@@ -18,26 +18,24 @@ It is recommended that you install FeedAggregator via NuGet.Or Add a reference t
 1) Load The Feed From Url.
 
 ```csharp
-SyndicationFeed syndicationFeed=new SyndicationFeed.Load(FeedUrl);
+SyndicationFeed syndicationFeed = new SyndicationFeed.Load(FeedUrl);
 ```
 
 2) Get the FeedType from the SyndicationFeed
 
 ```csharp
-FeedType type=sundicationFeed.Type;
+FeedType type = syndicationFeed.Type;
 ```
 
 3) Type cast the Feed property to RSSFeed or AtomFeed or MediaRSSFeed object according to the type
 
 ```csharp
-RSSFeed rss=(RSSFeed)syndicationFeed.Feed;
+RSSFeed rss = (RSSFeed)syndicationFeed.Feed;
 ```
-
-Then you can get all properties of the Feed
 
 You can also check a given url contains a valid feed 
 
 ```csharp
-bool isValid=SyndicationFeed.IsValidFeed(FeedUrl);
+bool isValidFeed = SyndicationFeed.IsValidFeed(FeedUrl);
 ```
 
