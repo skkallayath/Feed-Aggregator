@@ -12,7 +12,7 @@
         /// <summary>
         /// The Feed Type
         /// </summary>
-        public FeedType FeedType { get { return FeedType.RSS; } }
+        public FeedType Type { get { return FeedType.RSS; } }
 
         /// <summary>
         /// The Version

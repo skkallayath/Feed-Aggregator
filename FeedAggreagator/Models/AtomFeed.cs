@@ -12,7 +12,7 @@
         /// <summary>
         /// The FeedType
         /// </summary>
-        public FeedType FeedType { get { return FeedType.Atom; } }
+        public FeedType Type { get { return FeedType.Atom; } }
 
         #region Required Atom Feed Properties
 

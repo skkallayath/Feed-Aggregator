@@ -20,7 +20,7 @@
         /// <summary>
         /// The FeedType
         /// </summary>
-        public virtual FeedType Type { get; protected set; }
+        public virtual FeedType FeedType { get; protected set; }
 
         /// <summary>
         /// The Feed
@@ -116,14 +116,16 @@
         private void ExtractData()
         {
             IFeed feed = null;
-            switch (Type)
+            switch (FeedType)
             {
                 case FeedType.RSS:
                     feed = new RSSFeed();
                     break;
                 case FeedType.MediaRSS:
+                    feed = new MediaRSSFeed();
                     break;
                 case FeedType.Atom:
+                    feed = new AtomFeed();
                     break;
                 default:
                     break;
@@ -179,14 +181,14 @@
             // If Atom
             if (this.FeedXML.DocumentElement.Name == "feed")
             {
-                this.Type = FeedType.Atom;
+                this.FeedType = FeedType.Atom;
                 return;
             }
 
             // If RSS
             if (this.FeedXML.DocumentElement.Name == "rss")
             {
-                Type = FeedType.RSS;
+                FeedType = FeedType.RSS;
 
                 // Checking for Media RSS
                 var schemaAttribute = FeedXML.DocumentElement.Attributes["xmlns:media"];
@@ -195,7 +197,7 @@
                     string schema = schemaAttribute.Value;
                     if (string.IsNullOrEmpty(schema) && schema.Equals(@"http://search.yahoo.com/mrss/", StringComparison.InvariantCultureIgnoreCase))
                     {
-                        Type = FeedType.MediaRSS;
+                        FeedType = FeedType.MediaRSS;
                     }
                 }
                 return;

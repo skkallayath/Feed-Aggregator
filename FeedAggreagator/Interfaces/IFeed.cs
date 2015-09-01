@@ -8,6 +8,6 @@
         /// <summary>
         /// The Feed Type
         /// </summary>
-        FeedType FeedType { get; }
+        FeedType Type { get; }
     }
 }
