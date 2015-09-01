@@ -1,5 +1,5 @@
 # Feed-Aggregator
-Travis:    [![Travis](https://travis-ci.org/skkallayath/Feed-Aggregator.svg?branch=master)](https://travis-ci.org/skkallayath/Feed-Aggregator) 
+[![Travis](https://travis-ci.org/skkallayath/Feed-Aggregator.svg?branch=master)](https://travis-ci.org/skkallayath/Feed-Aggregator) [![NuGet](http://img.shields.io/nuget/v/FeedAggregator.svg)](https://www.nuget.org/packages/FeedAggregator/) [![Downloads](http://img.shields.io/nuget/dt/FeedAggregator.svg)](https://www.nuget.org/packages/FeedAggregator/)
 
 This nuget package will help you to get Feed contents from an URL. It supports RSS and Atom Feeds. 
 
