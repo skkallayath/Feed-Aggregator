@@ -37,7 +37,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Suyati.XmlExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XMLExtractor.1.0.3\lib\Suyati.XmlExtractor.dll</HintPath>
+      <HintPath>..\packages\XMLExtractor.1.0.4\lib\Suyati.XmlExtractor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
