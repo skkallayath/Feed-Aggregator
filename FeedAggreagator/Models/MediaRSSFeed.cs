@@ -360,6 +360,12 @@
     public class MeediaRSSFeedThumbnail
     {
         /// <summary>
+        /// The Type
+        /// </summary>
+        [Element(Name = "type")]
+        public string Type { get; set; }
+
+        /// <summary>
         /// The Width
         /// </summary>
         [Property(Name = "width")]

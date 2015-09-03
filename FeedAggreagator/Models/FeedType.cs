@@ -9,7 +9,7 @@
         /// The Atom Feed Type
         /// </summary>
         Atom,
-        
+
         /// <summary>
         /// The RSS Feed Type
         /// </summary>
@@ -18,6 +18,11 @@
         /// <summary>
         /// The Media RSS Feed Type
         /// </summary>
-        MediaRSS
+        MediaRSS,
+
+        /// <summary>
+        /// The Youtube Media Feed Type
+        /// </summary>
+        YouTube
     }
 }

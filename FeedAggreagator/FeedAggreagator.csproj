@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Suyati.XmlExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XMLExtractor.1.0.3\lib\Suyati.XmlExtractor.dll</HintPath>
       <Private>True</Private>
@@ -45,14 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\MediaRSSFeed.cs" />
     <Compile Include="Models\AtomFeed.cs" />
     <Compile Include="Models\ContentElement.cs" />
     <Compile Include="Models\FeedType.cs" />
     <Compile Include="Interfaces\IFeed.cs" />
+    <Compile Include="Models\MediaRSSFeed.cs" />
+    <Compile Include="Models\YoutubeFeed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RSSFeed.cs" />
     <Compile Include="SyndicationFeed.cs" />
+    <Compile Include="WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -53,8 +53,7 @@
             string xml = string.Empty;
             try
             {
-                WebClient client = new WebClient();
-                xml = client.DownloadString(feedUrl);
+                xml = WebHelper.DownloadContent(feedUrl);
             }
             catch (WebException)
             {
@@ -121,18 +120,21 @@
                 case FeedType.RSS:
                     feed = new RSSFeed();
                     break;
-                case FeedType.MediaRSS:
-                    feed = new MediaRSSFeed();
+                case FeedType.YouTube:
+                    feed = new YoutubeFeed();
                     break;
                 case FeedType.Atom:
                     feed = new AtomFeed();
+                    break;
+                case FeedType.MediaRSS:
+                    feed = new MediaRSSFeed();
                     break;
                 default:
                     break;
             }
             if (feed != null)
             {
-                this.Feed.Extract(this.FeedXML.DocumentElement);
+                feed.Extract(this.FeedXML.DocumentElement);
                 this.Feed = feed;
             }
         }
@@ -165,11 +167,7 @@
         private void LoadXml()
         {
             this.FeedXML = new XmlDocument();
-
-            // Downloading the content
-            WebClient client = new WebClient();
-            string xml = client.DownloadString(this.FeedUrl);
-
+            string xml = WebHelper.DownloadContent(this.FeedUrl);
             this.FeedXML.LoadXml(xml);
         }
 
@@ -182,6 +180,16 @@
             if (this.FeedXML.DocumentElement.Name == "feed")
             {
                 this.FeedType = FeedType.Atom;
+                // Checking for Youtube Feed
+                var schemaAttribute = FeedXML.DocumentElement.Attributes["xmlns:yt"];
+                if (schemaAttribute != null)
+                {
+                    string schema = schemaAttribute.Value;
+                    if (!string.IsNullOrEmpty(schema) && schema.StartsWith(@"http://www.youtube.com/xml/schemas/", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        FeedType = FeedType.YouTube;
+                    }
+                }
                 return;
             }
 
@@ -195,7 +203,7 @@
                 if (schemaAttribute != null)
                 {
                     string schema = schemaAttribute.Value;
-                    if (string.IsNullOrEmpty(schema) && schema.Equals(@"http://search.yahoo.com/mrss/", StringComparison.InvariantCultureIgnoreCase))
+                    if (!string.IsNullOrEmpty(schema) && schema.Equals(@"http://search.yahoo.com/mrss/", StringComparison.InvariantCultureIgnoreCase))
                     {
                         FeedType = FeedType.MediaRSS;
                     }
