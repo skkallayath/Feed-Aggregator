@@ -24,7 +24,7 @@ SyndicationFeed syndicationFeed = new SyndicationFeed.Load(FeedUrl);
 2) Get the FeedType from the SyndicationFeed
 
 ```csharp
-FeedType type = syndicationFeed.Type;
+FeedType type = syndicationFeed.FeedType;
 ```
 
 3) Type cast the Feed property to RSSFeed or AtomFeed or MediaRSSFeed object according to the type
