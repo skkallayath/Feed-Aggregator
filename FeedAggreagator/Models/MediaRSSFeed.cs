@@ -41,6 +41,7 @@
     /// </summary>
     public class MediaRSSChannel
     {
+
         /// <summary>
         /// The Title
         /// </summary>
@@ -96,10 +97,58 @@
         public string Icon { get; set; }
 
         /// <summary>
+        /// The Media Thumbnail
+        /// </summary>
+        [Element(Name = "media:thumbnail")]
+        public MediaRSSFeedThumbnail MediaThumbnail { get; set; }
+
+        /// <summary>
+        /// The Image
+        /// </summary>
+        [Element(Name = "image")]
+        public RSSFeedImage Image { get; set; }
+
+        /// <summary>
+        /// The Media CopyRight
+        /// </summary>
+        [Element(Name = "media:copyright")]
+        public string MediaCopyright { get; set; }
+
+        /// <summary>
+        /// The Media CopyRight
+        /// </summary>
+        [Element(Name = "media:rating")]
+        public MediaRSSRating MediaRating { get; set; }
+
+        /// <summary>
+        /// The Last build date
+        /// </summary>
+        [Element(Name = "lastBuildDate")]
+        public DateTime? LastBuildDate { get; set; }
+
+        /// <summary>
+        /// The Time To Live
+        /// </summary>
+        [Element(Name = "ttl")]
+        public long TimeToLive { get; set; }
+
+        /// <summary>
         /// The Atom Links
         /// </summary>
         [Element(Name = "atom:link")]
         public IList<AtomFeedLink> AtomLinks { get; set; }
+
+        /// <summary>
+        /// The Media Description
+        /// </summary>
+        [Element(Name = "media:description")]
+        public string MediaDescription { get; set; }
+
+        /// <summary>
+        /// The CloudService Info
+        /// </summary>
+        [Element(Name = "cloud")]
+        public RSSCloudServiceInfo Cloud { get; set; }
 
         /// <summary>
         /// The list of Items
@@ -109,10 +158,136 @@
     }
 
     /// <summary>
+    /// The media RSS Rating
+    /// </summary>
+    public class MediaRSSRating : ContentElement
+    {
+        /// <summary>
+        /// The Content Element
+        /// </summary>
+        [Property(Name = "scheme")]
+        public string Scheme { get; set; }
+    }
+
+    /// <summary>
+    /// The MediaRSS Feed Item Media Group
+    /// </summary>
+    public class MediaRSSFeedItemMediaGroup
+    {
+        /// <summary>
+        /// The Media Title
+        /// </summary>
+        [Element(Name = "media:title")]
+        public string MediaTitle { get; set; }
+
+        /// <summary>
+        /// The Media Content
+        /// </summary>
+        [Element(Name = "media:content")]
+        public IList<MediaRSSFeedMediaContent> MediaContentList { get; set; }
+
+        /// <summary>
+        /// The Media Thumbnail
+        /// </summary>
+        [Element(Name = "media:thumbnail")]
+        public MediaRSSFeedThumbnail MediaThumbnail { get; set; }
+
+        /// <summary>
+        /// The media description
+        /// </summary>
+        [Element(Name = "media:description")]
+        public string MediaDescription { get; set; }
+
+        /// <summary>
+        /// The media Community
+        /// </summary>
+        [Element(Name = "media:community")]
+        public YoutubeFeedMediaCommunity MediaCommunity { get; set; }
+    }
+
+    /// <summary>
+    /// The Media RSS Feed media Content
+    /// </summary>
+    public class MediaRSSFeedMediaContent
+    {
+        /// <summary>
+        /// The Type
+        /// </summary>
+        [Element(Name = "type")]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// The Width
+        /// </summary>
+        [Property(Name = "width")]
+        public int Width { get; set; }
+
+        /// <summary>
+        /// The Height
+        /// </summary>
+        [Property(Name = "height")]
+        public int Height { get; set; }
+
+        /// <summary>
+        /// the Url
+        /// </summary>
+        [Property(Name = "url")]
+        public string Url { get; set; }
+    }
+
+    /// <summary>
     /// The MediaRSS FeedItem
     /// </summary>
     public class MediaRSSFeedItem
     {
+        /// <summary>
+        /// The Comments
+        /// </summary>
+        [Element(Name = "comments")]
+        public string Comments { get; set; }
+
+        /// <summary>
+        /// The Author
+        /// </summary>
+        [Element(Name = "author")]
+        public string Author { get; set; }
+
+        /// <summary>
+        /// The Source
+        /// </summary>
+        [Element(Name = "source")]
+        public RSSFeedSource Source { get; set; }
+
+        /// <summary>
+        /// The media Group
+        /// </summary>
+        [Element(Name = "media:group")]
+        public MediaRSSFeedItemMediaGroup MediaGroup { get; set; }
+
+        /// <summary>
+        /// The Content Encoded
+        /// </summary>
+        [Element(Name = "content:encoded")]
+        public string ContentEncoded { get; set; }
+
+        /// <summary>
+        /// The Content Thumbnail
+        /// </summary>
+        [Element(Name = "content:thumbnail")]
+        public MediaRSSFeedThumbnail ContentThumbnail { get; set; }
+
+        /// <summary>
+        /// The Atom Links
+        /// </summary>
+        [Element(Name = "atom:link")]
+        public IList<AtomFeedLink> AtomLinks { get; set; }
+
+        /// <summary>
+        /// The categories
+        /// </summary>
+        [Element(Name = "category")]
+        public IList<string> Categories { get; set; }
+
         /// <summary>
         /// The Title
         /// </summary>
@@ -152,8 +327,8 @@
         /// <summary>
         /// The Media Thumbnail
         /// </summary>
-        [Element(Name = "thumbnail")]
-        public IList<MeediaRSSFeedThumbnail> MediaThumbnails { get; set; }
+        [Element(Name = "media:thumbnail")]
+        public IList<MediaRSSFeedThumbnail> MediaThumbnails { get; set; }
 
         /// <summary>
         /// The Media Keywords
@@ -357,12 +532,12 @@
     /// <summary>
     /// The Medis RSS Feed Thumbnail
     /// </summary>
-    public class MeediaRSSFeedThumbnail
+    public class MediaRSSFeedThumbnail : ContentElement
     {
         /// <summary>
         /// The Type
         /// </summary>
-        [Element(Name = "type")]
+        [Property(Name = "type")]
         public string Type { get; set; }
 
         /// <summary>

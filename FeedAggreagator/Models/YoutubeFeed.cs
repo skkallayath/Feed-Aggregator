@@ -117,73 +117,7 @@
         /// The Media Groups
         /// </summary>
         [Element(Name = "media:group")]
-        public YoutubeFeedItemMediaGroup MediaGroup { get; set; }
-    }
-
-    /// <summary>
-    /// The Youtube Feed Item Media Group
-    /// </summary>
-    public class YoutubeFeedItemMediaGroup
-    {
-        /// <summary>
-        /// The Media Title
-        /// </summary>
-        [Element(Name = "media:title")]
-        public string MediaTitle { get; set; }
-
-        /// <summary>
-        /// The Media Content
-        /// </summary>
-        [Element(Name = "media:content")]
-        public YoutubeFeedMediaContent MediaContent { get; set; }
-
-        /// <summary>
-        /// The Media Thumbnail
-        /// </summary>
-        [Element(Name = "media:thumbnail")]
-        public MeediaRSSFeedThumbnail MediaThumbnail { get; set; }
-
-        /// <summary>
-        /// The media description
-        /// </summary>
-        [Element(Name = "media:description")]
-        public string MediaDescription { get; set; }
-
-        /// <summary>
-        /// The media Community
-        /// </summary>
-        [Element(Name = "media:community")]
-        public YoutubeFeedMediaCommunity MediaCommunity { get; set; }
-    }
-
-    /// <summary>
-    /// The youtube media Content
-    /// </summary>
-    public class YoutubeFeedMediaContent
-    {
-        /// <summary>
-        /// The Type
-        /// </summary>
-        [Element(Name = "type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// The Width
-        /// </summary>
-        [Property(Name = "width")]
-        public int Width { get; set; }
-
-        /// <summary>
-        /// The Height
-        /// </summary>
-        [Property(Name = "height")]
-        public int Height { get; set; }
-
-        /// <summary>
-        /// the Url
-        /// </summary>
-        [Property(Name = "url")]
-        public string Url { get; set; }
+        public MediaRSSFeedItemMediaGroup MediaGroup { get; set; }
     }
 
     /// <summary>
