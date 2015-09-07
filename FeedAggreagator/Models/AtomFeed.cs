@@ -32,7 +32,7 @@
         /// The Updated
         /// </summary>
         [Element(Name = "updated")]
-        public DateTime Updated { get; set; }
+        public DateTime? LastUpdatedDate { get; set; }
 
         #endregion
 
@@ -99,12 +99,88 @@
         /// </summary>
         [Element(Name = "entry")]
         public IList<AtomFeedItem> Items { get; set; }
+
+        /// <summary>
+        /// The Title
+        /// </summary>
+        string IFeed.Title
+        {
+            get
+            {
+                if (this.Title != null)
+                {
+                    return Title.Value;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The description
+        /// </summary>
+        public string Description
+        {
+            get { return this.SubTitle; }
+        }
+
+        /// <summary>
+        /// The Description
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (this.Link != null)
+                {
+                    return this.Link.Href;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Image Url
+        /// </summary>
+        public string ImageUrl
+        {
+            get { return null; }
+        }
+
+        /// <summary>
+        /// The Items
+        /// </summary>
+        IList<IFeedItem> IFeed.Items
+        {
+            get
+            {
+                IList<IFeedItem> list = new List<IFeedItem>();
+                if (this.Items != null)
+                {
+                    foreach (IFeedItem item in this.Items)
+                    {
+                        list.Add(item);
+                    }
+                }
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// The Published Date
+        /// </summary>
+        public DateTime? PublishedDate
+        {
+            get
+            {
+                return null;
+            }
+        }
     }
 
     /// <summary>
     /// The AtomFeed Item
     /// </summary>
-    public class AtomFeedItem
+    public class AtomFeedItem : IFeedItem
     {
         #region Required Properties
 
@@ -124,7 +200,7 @@
         /// The Updated
         /// </summary>
         [Element(Name = "updated")]
-        public DateTime Updated { get; set; }
+        public DateTime? Updated { get; set; }
 
         #endregion
 
@@ -164,7 +240,7 @@
         /// The Published Date
         /// </summary>
         [Element(Name = "published")]
-        public DateTime? Published { get; set; }
+        public DateTime? PublishedDate { get; set; }
 
         /// <summary>
         /// The Source
@@ -179,6 +255,58 @@
         public AtomFeedContent Rights { get; set; }
 
         #endregion
+
+        /// <summary>
+        /// The Title
+        /// </summary>
+        string IFeedItem.Title
+        {
+            get
+            {
+                if (this.Title != null)
+                {
+                    return Title.Value;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Description
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return this.Summary;
+            }
+        }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (this.Link != null)
+                {
+                    return Link.Href;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Image Url
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                return null;
+            }
+        }
     }
 
     /// <summary>

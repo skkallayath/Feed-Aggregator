@@ -34,6 +34,126 @@
         {
             get { return FeedType.MediaRSS; }
         }
+
+        /// <summary>
+        /// The Title
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.Title;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Description
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.Description;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.Link;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The ImageUrl
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    if (Channel.Image != null)
+                    {
+                        return Channel.Image.Url;
+                    }
+                    if (string.IsNullOrEmpty(Channel.Icon))
+                    {
+                        return Channel.Icon;
+                    }
+                    if (Channel.MediaThumbnail != null)
+                    {
+                        return Channel.MediaThumbnail.Url;
+                    }
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Items
+        /// </summary>
+        public IList<IFeedItem> Items
+        {
+            get
+            {
+                IList<IFeedItem> list = new List<IFeedItem>();
+                if (Channel != null && Channel.Items != null)
+                {
+                    foreach (IFeedItem item in Channel.Items)
+                    {
+                        list.Add(item);
+                    }
+                }
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// The Published Date
+        /// </summary>
+        public DateTime? PublishedDate
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.PublishedDate;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Published Date
+        /// </summary>
+        public DateTime? LastUpdatedDate
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.LastBuildDate;
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
@@ -76,7 +196,7 @@
         /// The published Date
         /// </summary>
         [Element(Name = "pubDate")]
-        public string PublishedDate { get; set; }
+        public DateTime? PublishedDate { get; set; }
 
         /// <summary>
         /// The Generator
@@ -238,7 +358,7 @@
     /// <summary>
     /// The MediaRSS FeedItem
     /// </summary>
-    public class MediaRSSFeedItem
+    public class MediaRSSFeedItem : IFeedItem
     {
         /// <summary>
         /// The Comments
@@ -407,6 +527,33 @@
         /// </summary>
         [Element(Name = "payment")]
         public MediaRSSFeedPaymentInfo Payment { get; set; }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get { return this.Link; }
+        }
+
+        /// <summary>
+        /// The ImageUrl
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                if (this.ContentThumbnail != null)
+                {
+                    return ContentThumbnail.Url;
+                }
+                if (this.MediaThumbnails != null && this.MediaThumbnails.Count > 0)
+                {
+                    return this.MediaThumbnails[0].Url;
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>

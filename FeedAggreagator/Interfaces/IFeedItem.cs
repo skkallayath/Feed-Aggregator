@@ -1,18 +1,9 @@
 ﻿namespace Suyati.FeedAggreagator
 {
-    using System.Collections.Generic;
     using System;
 
-    /// <summary>
-    /// The interface to the Feed
-    /// </summary>
-    public interface IFeed
+    public interface IFeedItem
     {
-        /// <summary>
-        /// The Feed Type
-        /// </summary>
-        FeedType Type { get; }
-
         /// <summary>
         /// The Title
         /// </summary>
@@ -34,18 +25,8 @@
         string ImageUrl { get; }
 
         /// <summary>
-        /// The Items
-        /// </summary>
-        IList<IFeedItem> Items { get; }
-
-        /// <summary>
         /// The Published Date
         /// </summary>
         DateTime? PublishedDate { get; }
-
-        /// <summary>
-        /// The Last Updated Date
-        /// </summary>
-        DateTime? LastUpdatedDate { get; }
     }
 }

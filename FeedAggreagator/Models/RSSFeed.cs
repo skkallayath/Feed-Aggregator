@@ -25,6 +25,118 @@
         /// </summary>
         [Element(Name = "channel")]
         public RSSFeedChannel Channel { get; set; }
+
+        /// <summary>
+        /// The Title
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.Title;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Description
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.Description;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.Link;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Image Url
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    if (Channel.Image != null)
+                    {
+                        return Channel.Image.Url;
+                    }
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Items
+        /// </summary>
+        public IList<IFeedItem> Items
+        {
+            get
+            {
+                IList<IFeedItem> list = new List<IFeedItem>();
+                if (Channel != null && Channel.Items != null)
+                {
+                    foreach (IFeedItem item in Channel.Items)
+                    {
+                        list.Add(item);
+                    }
+                }
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// The Published Date
+        /// </summary>
+        public DateTime? PublishedDate
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.PublishedDate;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Published Date
+        /// </summary>
+        public DateTime? LastUpdatedDate
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    return Channel.LastBuildDate;
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
@@ -260,7 +372,7 @@
     /// <summary>
     /// The RSS feed Item
     /// </summary>
-    public class RSSFeedItem
+    public class RSSFeedItem : IFeedItem
     {
         /// <summary>
         /// The Title
@@ -321,6 +433,69 @@
         /// </summary>
         [Element(Name = "source")]
         public RSSFeedSource Source { get; set; }
+
+        /// <summary>
+        /// The media content
+        /// </summary>
+        [Element(Name = "media:content")]
+        public MediaRSSFeedContentMetadata MediaContent { get; set; }
+
+        /// <summary>
+        /// The content Encoded
+        /// </summary>
+        [Element(Name = "content:encoded")]
+        public string ContentEncoded { get; set; }
+
+        /// <summary>
+        /// The Image
+        /// </summary>
+        [Element(Name = "image")]
+        public RSSFeedImage Image { get; set; }
+
+        /// <summary>
+        /// The Thumbnail
+        /// </summary>
+        [Element(Name = "media:thumbnail")]
+        public MediaRSSFeedThumbnail MediaThumbnail { get; set; }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Link))
+                {
+                    return this.Link;
+                }
+                if (GUID != null)
+                {
+                    return GUID.Value;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The ImageUrl
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null)
+                {
+                    return Image.Url;
+                }
+
+                if (MediaThumbnail != null)
+                {
+                    return MediaThumbnail.Url;
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>

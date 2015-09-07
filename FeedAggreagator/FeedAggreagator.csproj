@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IFeedItem.cs" />
     <Compile Include="Models\AtomFeed.cs" />
     <Compile Include="Models\ContentElement.cs" />
     <Compile Include="Models\FeedType.cs" />

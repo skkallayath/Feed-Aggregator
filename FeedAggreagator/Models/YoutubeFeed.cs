@@ -1,6 +1,7 @@
 ﻿namespace Suyati.FeedAggreagator
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using XmlExtractor;
 
@@ -43,7 +44,7 @@
         /// The Published
         /// </summary>
         [Element(Name = "published")]
-        public DateTime? Published { get; set; }
+        public DateTime? PublishedDate { get; set; }
 
         /// <summary>
         /// The Entry
@@ -58,12 +59,88 @@
         {
             get { return FeedType.YouTube; }
         }
+
+        /// <summary>
+        /// The Description
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (Links != null && Links.Count > 0)
+                {
+                    var link = this.Links.FirstOrDefault(l => l.Rel.Equals("self"));
+                    if (link != null)
+                    {
+                        return link.Href;
+                    }
+                    link = this.Links.FirstOrDefault(l => l.Rel.Equals("alternate"));
+                    if (link != null)
+                    {
+                        return link.Href;
+                    }
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Image Url
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Items
+        /// </summary>
+        IList<IFeedItem> IFeed.Items
+        {
+            get
+            {
+                IList<IFeedItem> list = new List<IFeedItem>();
+                if (this.Items != null)
+                {
+                    foreach (IFeedItem item in this.Items)
+                    {
+                        list.Add(item);
+                    }
+                }
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// The Published Date
+        /// </summary>
+        public DateTime? LastUpdatedDate
+        {
+            get
+            {
+                return null;
+            }
+        }
     }
 
     /// <summary>
     /// The Youtube Feed Item
     /// </summary>
-    public class YoutubeFeedItem
+    public class YoutubeFeedItem : IFeedItem
     {
         /// <summary>
         /// The Id
@@ -105,19 +182,67 @@
         /// The Published Date
         /// </summary>
         [Element(Name = "published")]
-        public DateTime? Published { get; set; }
+        public DateTime? PublishedDate { get; set; }
 
         /// <summary>
         /// The Updated Date
         /// </summary>
         [Element(Name = "updated")]
-        public DateTime? Updated { get; set; }
+        public DateTime? LastUpdatedDate { get; set; }
 
         /// <summary>
         /// The Media Groups
         /// </summary>
         [Element(Name = "media:group")]
         public MediaRSSFeedItemMediaGroup MediaGroup { get; set; }
+
+        /// <summary>
+        /// The Description
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                if (MediaGroup != null)
+                {
+                    return MediaGroup.MediaDescription;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Url
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                if (Link != null)
+                {
+                    return Link.Href;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Image Url
+        /// </summary>
+        public string ImageUrl
+        {
+            get
+            {
+                if (MediaGroup != null)
+                {
+                    if (MediaGroup.MediaThumbnail != null)
+                    {
+                        return MediaGroup.MediaThumbnail.Url;
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
