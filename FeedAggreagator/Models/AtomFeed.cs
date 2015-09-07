@@ -143,7 +143,14 @@
         /// </summary>
         public string ImageUrl
         {
-            get { return null; }
+            get
+            {
+                if (this.Logo != null)
+                {
+                    return this.Logo;
+                }
+                return this.Icon;
+            }
         }
 
         /// <summary>

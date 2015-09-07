@@ -59,7 +59,11 @@
             {
                 if (this.Channel != null)
                 {
-                    return Channel.Description;
+                    if (Channel.Description != null)
+                    {
+                        return Channel.Description;
+                    }
+                    return Channel.MediaDescription;
                 }
                 return null;
             }
@@ -550,6 +554,10 @@
                 if (this.MediaThumbnails != null && this.MediaThumbnails.Count > 0)
                 {
                     return this.MediaThumbnails[0].Url;
+                }
+                if (MediaContent != null)
+                {
+                    return MediaContent.Url;
                 }
                 return null;
             }
