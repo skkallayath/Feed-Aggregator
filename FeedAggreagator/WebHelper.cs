@@ -33,10 +33,11 @@
             {
                 return null;
             }
+            var byteOrderMark = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
             // Removing Byte Order Mark from Content
-            if (content.StartsWith(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble())))
+            if (content.StartsWith(byteOrderMark))
             {
-                content = content.Substring(1);
+                content = content.Replace(byteOrderMark, string.Empty);
             }
             return content;
         }
