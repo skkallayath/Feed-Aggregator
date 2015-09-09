@@ -465,7 +465,7 @@
         {
             get
             {
-                if (string.IsNullOrEmpty(Link))
+                if (!string.IsNullOrEmpty(Link))
                 {
                     return this.Link;
                 }
