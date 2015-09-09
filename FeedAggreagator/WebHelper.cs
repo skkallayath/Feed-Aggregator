@@ -2,6 +2,7 @@
 {
     using RestSharp;
     using System.Net;
+    using System.Text;
 
     /// <summary>
     /// The webhelper
@@ -27,7 +28,17 @@
                 throw new WebException(response.ErrorMessage, response.ErrorException);
             }
 
-            return response.Content;
+            string content = response.Content;
+            if (content == null)
+            {
+                return null;
+            }
+            // Removing Byte Order Mark from Content
+            if (content.StartsWith(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble())))
+            {
+                content = content.Substring(1);
+            }
+            return content;
         }
     }
 }
