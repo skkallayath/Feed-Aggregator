@@ -15,27 +15,49 @@ PM> Install-Package FeedAggregator
 
 It is recommended that you install FeedAggregator via NuGet.Or Add a reference to the FeedAggregator.dll
 
+You can check a given url contains a valid feed 
+
+```csharp
+bool isValidFeed = SyndicationFeed.IsValidFeed(FeedUrl);
+```
+
+If a url has valid feed, you can follow the steps
+
 1) Load The Feed From Url.
 
 ```csharp
 SyndicationFeed syndicationFeed = new SyndicationFeed.Load(FeedUrl);
 ```
 
-2) Get the FeedType from the SyndicationFeed
+2) You can get the FeedType from the SyndicationFeed.
+And You can type cast the Feed property to RSSFeed or AtomFeed or MediaRSSFeed or YouTubeFeed object according to the type
 
 ```csharp
 FeedType type = syndicationFeed.FeedType;
+if(type == FeedType.RSS)
+{
+  RSSFeed rss = (RSSFeed)syndicationFeed.Feed;
+}
 ```
 
-3) Type cast the Feed property to RSSFeed or AtomFeed or MediaRSSFeed object according to the type
+Or you can simply use it as IFeed which has Properties that are common to all feed types 
 
 ```csharp
-RSSFeed rss = (RSSFeed)syndicationFeed.Feed;
+IFeed feed = syndicationFeed.Feed;
+var imageUrl = feed.ImageUrl;
+var url = feed.Url;
+var title = feed.Title;
+var description = feed.Descriptions;
 ```
 
-You can also check a given url contains a valid feed 
+3) You can get the feed items also. The feed item will contain the common properties of various kind of feed items.
 
 ```csharp
-bool isValidFeed = SyndicationFeed.IsValidFeed(FeedUrl);
+foreach(IFeedItem item in feed.Items)
+{
+  var imageUrl = item.ImageUrl;
+  var url = item.Url;
+  var title = item.Title;
+  var description = item.Descriptions;
+}
 ```
-
