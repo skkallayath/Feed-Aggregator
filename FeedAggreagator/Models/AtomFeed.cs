@@ -285,7 +285,15 @@
         {
             get
             {
-                return this.Summary;
+                if (this.Summary != null)
+                {
+                    return this.Summary;
+                }
+                if(this.Content!=null)
+                {
+                    return this.Content;
+                }
+                return null;
             }
         }
 

@@ -29,6 +29,8 @@
         /// <returns></returns>
         public static implicit operator string(ContentElement element)
         {
+            if (element == null)
+                return null;
             return element.ToString();
         }
     }
