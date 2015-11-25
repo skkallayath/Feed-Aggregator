@@ -330,7 +330,7 @@
         /// The Register Procedure
         /// </summary>
         [Property(Name = "registerProcedure")]
-        public sbyte RegisterProcedure { get; set; }
+        public string RegisterProcedure { get; set; }
 
         /// <summary>
         /// The Protocol
