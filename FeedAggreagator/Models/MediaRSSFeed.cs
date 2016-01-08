@@ -572,6 +572,31 @@
                 return null;
             }
         }
+
+        /// <summary>
+        /// The author Name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Author))
+                {
+                    return Author;
+                }
+                if (this.MediaCredits != null && this.MediaCredits.Count > 0)
+                {
+                    foreach (var credit in this.MediaCredits)
+                    {
+                        if (credit.Role == "author")
+                        {
+                            return credit.Value;
+                        }
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>

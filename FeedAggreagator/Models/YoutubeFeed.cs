@@ -258,6 +258,25 @@
                 return null;
             }
         }
+
+
+        /// <summary>
+        /// The author Name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (Author != null)
+                {
+                    if (!string.IsNullOrEmpty(Author.Name))
+                    {
+                        return Author.Name;
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
