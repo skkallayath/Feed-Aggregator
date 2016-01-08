@@ -135,6 +135,21 @@
                 return null;
             }
         }
+
+        /// <summary>
+        /// The Author Name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (this.Author != null)
+                {
+                    return this.Author.Name;
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>

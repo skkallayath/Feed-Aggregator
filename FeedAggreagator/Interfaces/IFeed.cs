@@ -47,5 +47,10 @@
         /// The Last Updated Date
         /// </summary>
         DateTime? LastUpdatedDate { get; }
+
+        /// <summary>
+        /// The Author Name
+        /// </summary>
+        string AuthorName { get; }
     }
 }

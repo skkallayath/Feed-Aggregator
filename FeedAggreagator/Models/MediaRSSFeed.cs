@@ -158,6 +158,16 @@
                 return null;
             }
         }
+
+
+        public string AuthorName
+        {
+            get
+            {
+                return null;
+            }
+        }
+
     }
 
     /// <summary>

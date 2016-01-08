@@ -137,6 +137,26 @@
                 return null;
             }
         }
+
+
+        public string AuthorName
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    if (!string.IsNullOrEmpty(this.Channel.webMaster))
+                    {
+                        return Channel.webMaster;
+                    }
+                    if (!string.IsNullOrEmpty(this.Channel.ManagingEditor))
+                    {
+                        return Channel.ManagingEditor;
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>

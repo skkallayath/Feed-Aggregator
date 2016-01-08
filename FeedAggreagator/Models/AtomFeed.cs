@@ -182,6 +182,34 @@
                 return null;
             }
         }
+
+        /// <summary>
+        /// The author name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (this.Author != null)
+                {
+                    if (!string.IsNullOrEmpty(this.Author.Name))
+                    {
+                        return Author.Name;
+                    }
+                }
+                if (this.Contributors != null && Contributors.Count > 0)
+                {
+                    foreach (var contributor in this.Contributors)
+                    {
+                        if (!string.IsNullOrEmpty(contributor.Name))
+                        {
+                            return contributor.Name;
+                        }
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
@@ -289,7 +317,7 @@
                 {
                     return this.Summary;
                 }
-                if(this.Content!=null)
+                if (this.Content != null)
                 {
                     return this.Content;
                 }
