@@ -26,7 +26,7 @@ If a url has valid feed, you can follow the steps
 1) Load The Feed From Url.
 
 ```csharp
-SyndicationFeed syndicationFeed = new SyndicationFeed.Load(FeedUrl);
+SyndicationFeed syndicationFeed = SyndicationFeed.Load(FeedUrl);
 ```
 
 2) You can get the FeedType from the SyndicationFeed.
