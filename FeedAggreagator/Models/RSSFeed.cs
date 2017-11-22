@@ -137,6 +137,26 @@
                 return null;
             }
         }
+
+
+        public string AuthorName
+        {
+            get
+            {
+                if (this.Channel != null)
+                {
+                    if (!string.IsNullOrEmpty(this.Channel.webMaster))
+                    {
+                        return Channel.webMaster;
+                    }
+                    if (!string.IsNullOrEmpty(this.Channel.ManagingEditor))
+                    {
+                        return Channel.ManagingEditor;
+                    }
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
@@ -492,6 +512,22 @@
                 if (MediaThumbnail != null)
                 {
                     return MediaThumbnail.Url;
+                }
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        /// The author Name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Author))
+                {
+                    return Author;
                 }
                 return null;
             }

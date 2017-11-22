@@ -28,5 +28,10 @@
         /// The Published Date
         /// </summary>
         DateTime? PublishedDate { get; }
+
+        /// <summary>
+        /// The Author Name
+        /// </summary>
+        string AuthorName { get; }
     }
 }

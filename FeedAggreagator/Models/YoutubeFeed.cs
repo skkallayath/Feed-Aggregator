@@ -135,6 +135,21 @@
                 return null;
             }
         }
+
+        /// <summary>
+        /// The Author Name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (this.Author != null)
+                {
+                    return this.Author.Name;
+                }
+                return null;
+            }
+        }
     }
 
     /// <summary>
@@ -238,6 +253,25 @@
                     if (MediaGroup.MediaThumbnail != null)
                     {
                         return MediaGroup.MediaThumbnail.Url;
+                    }
+                }
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        /// The author Name
+        /// </summary>
+        public string AuthorName
+        {
+            get
+            {
+                if (Author != null)
+                {
+                    if (!string.IsNullOrEmpty(Author.Name))
+                    {
+                        return Author.Name;
                     }
                 }
                 return null;
